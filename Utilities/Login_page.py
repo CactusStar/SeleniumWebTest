@@ -13,11 +13,5 @@ class LoginPage (BasePage):
     def type_in(self, by, value, text):
         self.type(by, value, text)
     
-    def click_element(self, by, value): 
-        self.click(by, value)
-    
-    def get_exist(self, by, value):
-        return self.get_element_exist(by, value)
-    
     def get_url(self):
         return self.get_current_url()

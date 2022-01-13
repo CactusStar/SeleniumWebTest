@@ -5,5 +5,12 @@
     "MenuBar2": "Issues",
     "MenuBar3": "Marketplace",
     "MenuBar4": "Explore",
-    "logoLink": "https://github.com/"
+    "logoLink": "https://github.com/",
+    "Menulist": {
+        "item0": "New repository",
+        "item1": "Import repository",
+        "item2": "New gist",
+        "item3": "New organization",
+        "item4": "New project"
+    }
 }

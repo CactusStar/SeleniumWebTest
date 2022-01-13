@@ -79,6 +79,28 @@ class BasePage(object):
             logger.error("NoSuchElementException: %s" % e)
         return element
 
+    def find_elements(self, by=By.ID, value=None):
+        try:
+            if by == "id":
+                elements = self.driver.find_elements_by_id(value)
+            elif by == "name":
+                elements = self.driver.find_elements_by_name(value)
+            elif by == "class":
+                elements = self.driver.find_elements_by_class_name(value)
+            elif by == "link_text":
+                elements = self.driver.find_elements_by_link_text(value)
+            elif by == "xpath":
+                elements = self.driver.find_elements_by_xpath(value)
+            elif by == "tag":
+                elements = self.driver.find_elements_by_tag_name(value)
+            elif by == "css":
+                elements = self.driver.find_elements_by_css_selector(value)
+            else:
+                raise NameError("Please enter the  elements,'id','name','class','link_text','xpath','css','tag'.")
+        except NoSuchElementException as e:
+            logger.error("NoSuchElementException: %s" % e)
+        return elements
+
     def UserData_skiplogin(self, url):
         if platform.system() =="Windows":
             os.system("taskkill -im chrome* -f")
