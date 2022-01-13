@@ -10,4 +10,8 @@ class GeneralObjects(BasePage):
     Explore_Repositories = ["css", ".f5.text-bold.mb-1"]
     Pull_Request = ["css", ".js-selected-navigation-item.Header-link.mt-md-n3.mb-md-n3.py-2.py-md-3.mr-0.mr-md-3.border-top.border-md-top-0.border-white-fade"]
     Request = ["css", ".d-inline.d-md-none.d-lg-inline"]
+    Issues = ["link_text", "Issues"]
+    Marketplace = ["link_text", "Marketplace"]
+    Explore = ["link_text", "Explore"]
+
 

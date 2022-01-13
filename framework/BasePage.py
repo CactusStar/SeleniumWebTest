@@ -2,7 +2,6 @@ from selenium import webdriver
 from framework.logger import Logger
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
-from configparser import ConfigParser
 import os,platform, time
 import json
 import sys
@@ -15,41 +14,6 @@ class BasePage(object):
     chrome_driver_path = dir + '/SeleniumWebTest/Assets/webdriver/chromedriver.exe'
 
     def __init__(self, driver):
-        # config = ConfigParser()
-        # file_path = os.path.dirname(os.path.abspath('.')) + '/SeleniumWebTest/Assets/config/config.ini'
-        # config.read(file_path)
-        # # need change something to invoke browser only one time
-        # # get configure file attribute
-        # browser = config.get('browserType', 'browserName')
-        # url = config.get("testServer", "URL")
-
-        # if browser == "Firefox":
-        #     driver = webdriver.Firefox()
-        # elif browser == "Chrome":
-        #     if skip == True:
-        #         if platform.system() =="Windows":
-        #             os.system("taskkill -im chrome* -f")
-        #         else:
-        #             os.system("killall -9 chrome*")
-
-        #         my_dir = os.path.expanduser("~")
-
-        #         profile_directory = r'--user-data-dir={}\\AppData\\Local\\Google\\Chrome\\User Data'.format(my_dir)
-        #         print(profile_directory)
-        #         option = webdriver.ChromeOptions()
-        #         option.add_argument(profile_directory)
-
-        #         self.driver = webdriver.Chrome(chrome_options=option)
-        #         self.driver.get(url)
-        #         # self.driver.implicitly_wait(10)
-        #         time.sleep(10)
-        #     else:
-        #         driver = webdriver.Chrome(self.chrome_driver_path)
-        # elif browser == "IE":
-        #     driver = webdriver.Ie()
-        
-        # driver.get(url)
-        # driver.implicitly_wait(10)
         self.driver = driver
 
     def open_Browser(self, url):
