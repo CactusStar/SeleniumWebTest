@@ -54,8 +54,9 @@ class Testgeneral(unittest.TestCase):
 
     def test_new_component(self): 
         generalpage = GeneralPage(self.driver)
+        common_action = CommonOperation(self.driver)
         data = generalpage.load_general_data()
-        new_component = generalpage.find_target_element(GeneralObjects.New_Component[0], GeneralObjects.New_Component[1])
+        new_component = common_action.find_target_element(GeneralObjects.New_Component[0], GeneralObjects.New_Component[1])
         
         # verify menu invisible before click
         have_open = new_component.get_attribute("open")
@@ -65,7 +66,7 @@ class Testgeneral(unittest.TestCase):
         have_open = new_component.get_attribute("open")
         self.assertTrue(have_open)
         # verify items
-        elements = generalpage.find_target_elements(GeneralObjects.New_Component_MenuList[0], GeneralObjects.New_Component_MenuList[1])
+        elements = common_action.find_target_elements(GeneralObjects.New_Component_MenuList[0], GeneralObjects.New_Component_MenuList[1])
         loopcount = len(data["Menulist"])
         for i in range(0, loopcount):
             self.assertEqual(data["Menulist"]["item" + str(i)], elements[i].text)

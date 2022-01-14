@@ -1,0 +1,38 @@
+{
+    "pageurl": "https://github.com/issues",
+    "assignedurl": "https://github.com/issues/assigned",
+    "created": "Created",
+    "assigned": "Assigned",
+    "mentioned": "Mentioned",
+    "open": "Open",
+    "closed": "Closed",
+    "Visibility": {
+        "name": "Visibility",
+        "header": "Repository visibility",
+        "menulist": {
+            "item0": "Private repositories only",
+            "item1": "Public repositories only"
+        }
+        
+    },
+    "Organization": {
+        "name": "Organization",
+        "header": "Filter by organization or owner"
+    },
+    "Sort": {
+        "name": "Sort",
+        "header": "Sort by",
+        "menulist": {
+            "item0": "Newest",
+            "item1": "Oldest",
+            "item2": "Most commented",
+            "item3": "Least commented",
+            "item4": "Recently updated",
+            "item5": "Least recently updated"
+        }
+        
+
+    },
+    "nomatch": "No results matched your search.",
+    "guidance": "You could search all of GitHub or try an advanced search."
+}

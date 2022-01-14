@@ -138,6 +138,9 @@ class BasePage(object):
     def get_element_text(self, by, value):
         return self.find_element(by, value).text
 
+    def get_element_text_inner(self, by, value):
+        return self.find_element(by, value).get_attribute("innerText")
+
     def execute_script(self, script):
         return self.driver.execute_script(script)
     

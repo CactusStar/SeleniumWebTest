@@ -12,6 +12,3 @@ class LoginPage (BasePage):
 
     def type_in(self, by, value, text):
         self.type(by, value, text)
-    
-    def get_url(self):
-        return self.get_current_url()

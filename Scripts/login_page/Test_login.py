@@ -26,10 +26,10 @@ class TestLoginPage (unittest.TestCase):
         logindata = self.get_login()
         username = logindata["username"]
         password = logindata["password"]
-        loginpage.type(LoginObjects.Username[0], LoginObjects.Username[1], text=username)
-        loginpage.type(LoginObjects.Password[0], LoginObjects.Password[1], text=password)
+        loginpage.type_in(LoginObjects.Username[0], LoginObjects.Username[1], text=username)
+        loginpage.type_in(LoginObjects.Password[0], LoginObjects.Password[1], text=password)
         Common.click_ele(LoginObjects.Signin[0], LoginObjects.Signin[1])
-        current_url = loginpage.get_url()
+        current_url = Common.get_url()
         self.assertEqual(current_url, "https://github.com/")
     
     def test_invalid_password(self):
@@ -38,8 +38,8 @@ class TestLoginPage (unittest.TestCase):
         logindata = self.get_login()
         username = logindata["username"]
         password = logindata["incorrect_password"]
-        loginpage.type(LoginObjects.Username[0], LoginObjects.Username[1], text=username)
-        loginpage.type(LoginObjects.Password[0], LoginObjects.Password[1], text=password)
+        loginpage.type_in(LoginObjects.Username[0], LoginObjects.Username[1], text=username)
+        loginpage.type_in(LoginObjects.Password[0], LoginObjects.Password[1], text=password)
         Common.click_ele(LoginObjects.Signin[0], LoginObjects.Signin[1])
         exist = Common.get_exist(LoginObjects.IncorrectInfo[0], LoginObjects.IncorrectInfo[1])
         self.assertTrue(exist)
