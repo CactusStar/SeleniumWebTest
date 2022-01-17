@@ -130,3 +130,6 @@ dmypy.json
 
 # html file
 *.html
+
+# config file(.ini)
+*.ini

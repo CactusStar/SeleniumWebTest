@@ -25,3 +25,6 @@ class CommonOperation(BasePage):
     
     def find_target_element(self, by, value):
         return self.find_element(by, value)
+    
+    def type_in(self, by, value, text):
+        self.type(by, value, text)

@@ -15,5 +15,3 @@ class GeneralObjects(BasePage):
     Explore = ["link_text", "Explore"]
     New_Component = ["css", 'details[class="details-overlay details-reset"]']
     New_Component_MenuList = ["css", 'details[class="details-overlay details-reset"] details-menu a']
-
-
