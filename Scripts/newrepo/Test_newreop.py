@@ -51,13 +51,37 @@ class Testnewrepo(unittest.TestCase):
         cancel_button.click()
         self.assertEqual(common_action.get_current_url(), data["cancellink"])
 
+    def test_learnmore(self):
+        common_action = CommonOperation(self.driver)
+        newrepo_page = NewRepoPage(self.driver)
+        data = newrepo_page.load_newrepo_data()
+        common_action.find_element(NewReopObjects.Add_RM_Learnmore_link[0], NewReopObjects.Add_RM_Learnmore_link[1]).click()
+        common_action.switch_windows_handle(-1)
+        jump_url = common_action.get_current_url()
+        self.assertEqual(data["addreadmelearnmore"], jump_url)
+    
+    def test_hidencontent(self):
+        common_action = CommonOperation(self.driver)
+        newrepo_page = NewRepoPage(self.driver)
+        data = newrepo_page.load_newrepo_data()
+        hiden_list = common_action.find_element(NewReopObjects.License_hiden_list[0], NewReopObjects.License_hiden_list[1])
+        # display_attribute = hiden_list.value_of_css_property("display")
+        display_attribute = hiden_list.is_displayed()
+        self.assertFalse(display_attribute)
+        # self.assertEqual(display_attribute, "none")
+        chooselicen_checkbox = common_action.find_element(NewReopObjects.Choose_license_checkbox[0], NewReopObjects.Choose_license_checkbox[1])
+        chooselicen_checkbox.click()
+        # display_attribute = hiden_list.value_of_css_property("display")
+        # self.assertEqual(display_attribute, "block")
+        display_attribute = hiden_list.is_displayed()
+        self.assertTrue(display_attribute)
 
 
 if __name__ == "__main__":
     # unittest.main()
     suit = unittest.TestSuite()
-    suit.addTest(Testnewrepo("test_controlstatus"))
-    suit.addTest(Testnewrepo("test_import_cancel"))
+    suit.addTest(Testnewrepo("test_hidencontent"))
+    # suit.addTest(Testnewrepo("test_import_cancel"))
     # suit.addTest(Testgeneral("test_new_Repositories"))
     with(open('TestReport/' + time.strftime('%Y%m%d%H%M',time.localtime(time.time())) + '.html', 'wb')) as fp:
         runner = HTMLTestRunner(

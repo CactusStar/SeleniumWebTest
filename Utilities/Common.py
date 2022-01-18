@@ -28,3 +28,11 @@ class CommonOperation(BasePage):
     
     def type_in(self, by, value, text):
         self.type(by, value, text)
+
+    def get_driver_handle(self):
+        n = self.driver.window_handles
+        return n
+    
+    def switch_windows_handle(self, m):
+        n = self.get_driver_handle()
+        self.driver.switch_to_window(n[m])

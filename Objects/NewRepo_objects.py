@@ -12,4 +12,6 @@ class NewReopObjects():
     Create_repo_button = ["css", 'button[data-disable-with="Creating repository&hellip;"]']
     ImportRepo_link = ["css", 'a[href="/new/import"]']
     Cancel_button = ["css", 'a[href="/"]']
+    Add_RM_Learnmore_link = ["xpath", '//*[@id="new_repository"]/div[4]/div[4]/div[1]/span/a']
+    License_hiden_list = ["xpath", '//*[@id="new_repository"]/div[4]/div[4]/div[3]/span[2]']
     

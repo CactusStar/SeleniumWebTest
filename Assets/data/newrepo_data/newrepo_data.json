@@ -1,5 +1,6 @@
 {
     "RepoName": "newrepoTest",
     "importlink": "https://github.com/new/import",
-    "cancellink": "https://github.com/"
+    "cancellink": "https://github.com/",
+    "addreadmelearnmore": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
 }
