@@ -9,16 +9,15 @@ import time
 from framework.BaseBrowser import BrowserEngine
 
 class Testnewrepo(unittest.TestCase):
-
+    data_path = './Assets/data/newrepo_data/newrepo_data.json'
     @classmethod
     def setUpClass(cls):
         browse = BrowserEngine(cls)
-        cls.driver = browse.open_browser(cls)
+        cls.data = browse.load_data(cls.data_path)
+        cls.driver = browse.open_browser(cls, cls.data_path)
 
     def test_controlstatus(self):
         common_action = CommonOperation(self.driver)
-        newrepo_page = NewRepoPage(self.driver)
-        data = newrepo_page.load_newrepo_data()
         public_radio = common_action.find_element(NewReopObjects.Public_radio[0], NewReopObjects.Public_radio[1])
         private_radio = common_action.find_element(NewReopObjects.Private_radio[0], NewReopObjects.Private_radio[1])
         addreadme_checkbox = common_action.find_element(NewReopObjects.Add_RM_checkbox[0], NewReopObjects.Add_RM_checkbox[1])
@@ -36,34 +35,28 @@ class Testnewrepo(unittest.TestCase):
         self.assertTrue(addignore_checkbox.is_selected())
         addignore_checkbox.click()
         self.assertFalse(create_button.is_enabled())
-        common_action.type_in(NewReopObjects.RepoName[0], NewReopObjects.RepoName[1], data["RepoName"])
+        common_action.type_in(NewReopObjects.RepoName[0], NewReopObjects.RepoName[1], self.data["RepoName"])
         time.sleep(3)
         self.assertTrue(create_button.is_enabled())
     
     def test_import_cancel(self):
         common_action = CommonOperation(self.driver)
-        newrepo_page = NewRepoPage(self.driver)
-        data = newrepo_page.load_newrepo_data()
         import_link = common_action.find_elements(NewReopObjects.ImportRepo_link[0], NewReopObjects.ImportRepo_link[1])
         import_link[1].click()
-        self.assertEqual(common_action.get_current_url(), data["importlink"])
+        self.assertEqual(common_action.get_current_url(), self.data["importlink"])
         cancel_button = common_action.find_element(NewReopObjects.Cancel_button[0], NewReopObjects.Cancel_button[1])
         cancel_button.click()
-        self.assertEqual(common_action.get_current_url(), data["cancellink"])
+        self.assertEqual(common_action.get_current_url(), self.data["cancellink"])
 
     def test_learnmore(self):
         common_action = CommonOperation(self.driver)
-        newrepo_page = NewRepoPage(self.driver)
-        data = newrepo_page.load_newrepo_data()
         common_action.find_element(NewReopObjects.Add_RM_Learnmore_link[0], NewReopObjects.Add_RM_Learnmore_link[1]).click()
         common_action.switch_windows_handle(-1)
         jump_url = common_action.get_current_url()
-        self.assertEqual(data["addreadmelearnmore"], jump_url)
+        self.assertEqual(self.data["addreadmelearnmore"], jump_url)
     
     def test_hidencontent(self):
         common_action = CommonOperation(self.driver)
-        newrepo_page = NewRepoPage(self.driver)
-        data = newrepo_page.load_newrepo_data()
         hiden_list = common_action.find_element(NewReopObjects.License_hiden_list[0], NewReopObjects.License_hiden_list[1])
         # display_attribute = hiden_list.value_of_css_property("display")
         display_attribute = hiden_list.is_displayed()

@@ -5,7 +5,5 @@ import json
 
 class NewRepoPage(BasePage):
 
-    def load_newrepo_data(self):
-        with open('./Assets/data/newrepo_data/newrepo_data.json','r',encoding='utf8') as jsondata:
-            newrepodata = json.load(jsondata)
-        return newrepodata
+    def reserve(self):
+        print ("reserve for future")

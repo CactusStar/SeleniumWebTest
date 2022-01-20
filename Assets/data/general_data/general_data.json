@@ -1,4 +1,5 @@
 {
+    "ServerPath": "https://github.com/",
     "url_new": "https://github.com/new",
     "geticonscript": "return window.getComputedStyle(document.querySelector('#repository-owner-label'),':after').getPropertyValue('content')",
     "MenuBar1": "Pull requests",

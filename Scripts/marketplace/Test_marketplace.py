@@ -9,33 +9,31 @@ import time
 from framework.BaseBrowser import BrowserEngine
 
 class TestMarketplace(unittest.TestCase):
-    
+    data_path = './Assets/data/marketplace_data/marketplace_data.json'
     @classmethod
     def setUpClass(cls):
         browse = BrowserEngine(cls)
-        cls.driver = browse.open_browser(cls)
+        cls.data = browse.load_data(cls.data_path)
+        cls.driver = browse.open_browser(cls, cls.data_path)
     
     def test_treeitems(self):
-        marketplace_page = MarketplacePage(self.driver)
         common_actions = CommonOperation(self.driver)
-        data = marketplace_page.load_marketplace_data()
+        # data = common_actions.load_data(self.data_path)
         list = common_actions.find_elements(MarketplaceObjects.Type_list[0], MarketplaceObjects.Type_list[1])
         loopcount = len(list)
         for i in range (0, loopcount):
-            self.assertEqual(data["Typelist"]["item" + str(i)], list[i].text)
+            self.assertEqual(self.data["Typelist"]["item" + str(i)], list[i].text)
 
     def test_free(self):
-        marketplace_page = MarketplacePage(self.driver)
         common_actions = CommonOperation(self.driver)
-        data = marketplace_page.load_marketplace_data()
         explore_free = common_actions.find_element(MarketplaceObjects.Free_link[0], MarketplaceObjects.Free_link[1])
         explore_free.click()
         free_link = common_actions.get_current_url()
-        self.assertEqual(data["Freelink"], free_link)
+        self.assertEqual(self.data["Freelink"], free_link)
         close_link = common_actions.find_element(MarketplaceObjects.Closefree_link[0], MarketplaceObjects.Closefree_link[1])
         close_link.click()
         market_link = common_actions.get_current_url()
-        self.assertEqual(data["marketlink"], market_link)
+        self.assertEqual(self.data["marketlink"], market_link)
 
 if __name__ == "__main__":
     suit = unittest.TestSuite()

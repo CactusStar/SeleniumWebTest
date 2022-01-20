@@ -1,6 +1,12 @@
 from framework.BasePage import BasePage
+import json
 
 class CommonOperation(BasePage):
+
+    def load_data(self, path):
+        with open(path,'r',encoding='utf8') as jsondata:
+            jsondata = json.load(jsondata)
+        return jsondata
 
     def wait_until(self, seconds):
         self.wait(seconds)

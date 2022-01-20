@@ -5,8 +5,6 @@ import json
 
 class IssuesPage(BasePage):
 
-    def load_issues_data(self):
-        with open('./Assets/data/issues_data/issues_data.json','r',encoding='utf8') as jsondata:
-            issuedata = json.load(jsondata)
-        return issuedata
+    def reserve(self):
+        print ("reserve for future")
     

@@ -1,4 +1,5 @@
 {
+    "ServerPath": "https://github.com/issues",
     "pageurl": "https://github.com/issues",
     "assignedurl": "https://github.com/issues/assigned",
     "created": "Created",

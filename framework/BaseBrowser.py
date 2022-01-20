@@ -3,6 +3,7 @@ import sys
 sys.path.append('C://Users//XHe1//Desktop//MyProject//SeleniumWebTest')
 import os.path
 import platform
+import json
 from configparser import ConfigParser
 from selenium import webdriver
 from framework.logger import Logger
@@ -18,17 +19,23 @@ class BrowserEngine(object):
         self.driver = driver
 
         # read the browser type from config.ini file, return the driver
+    def load_data(self, path):
+        with open(path,'r',encoding='utf8') as jsondata:
+            jsondata = json.load(jsondata)
+        return jsondata
 
-    def open_browser(self, driver):
+    def open_browser(self, driver, path):
         # 读取配置配件
         config = ConfigParser()
         file_path = os.path.dirname(os.path.abspath('.')) + '/SeleniumWebTest/Assets/config/config.ini'
         config.read(file_path)
 
+        # get the server url
+        url = self.load_data(path)["ServerPath"]
         # 获取配置文件属性
         browser = config.get("browserType", "browserName")
         logger.info("You had select %s browser." % browser)
-        url = config.get("testServer", "URL")
+        # url = config.get("testServer", "URL")
         logger.info("The test server url is: %s" % url)
         login = config.get("loginNeed", "value")
 

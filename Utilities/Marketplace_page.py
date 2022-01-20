@@ -4,7 +4,5 @@ from framework.BasePage import BasePage
 import json
 class MarketplacePage(BasePage):
 
-    def load_marketplace_data(self):
-        with open('./Assets/data/marketplace_data/marketplace_data.json','r',encoding='utf8') as jsondata:
-            marketplacedata = json.load(jsondata)
-        return marketplacedata
+    def reserve(self):
+        print ("reserve for future")

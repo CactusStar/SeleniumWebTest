@@ -9,11 +9,12 @@ import time
 from framework.BaseBrowser import BrowserEngine
 
 class Testgeneral(unittest.TestCase):
-
+    data_path = './Assets/data/general_data/general_data.json'
     @classmethod
     def setUpClass(cls):
         browse = BrowserEngine(cls)
-        cls.driver = browse.open_browser(cls)
+        cls.data = browse.load_data(cls.data_path)
+        cls.driver = browse.open_browser(cls, cls.data_path)
 
     def test_allExistingControl(self):
         generalpage = GeneralPage(self.driver)
@@ -46,16 +47,13 @@ class Testgeneral(unittest.TestCase):
         """Test new repositories"""
         generalpage = GeneralPage(self.driver)
         common_action = CommonOperation(self.driver)
-        general_data = generalpage.load_general_data()
         common_action.click_ele(GeneralObjects.NewRepositories[0], GeneralObjects.NewRepositories[1])
         # self.UserData_skiplogin(general_data["url_new"])
-        text = generalpage.execute_target_script(scripts=general_data["geticonscript"])
+        text = generalpage.execute_target_script(scripts=self.data["geticonscript"])
         self.assertEqual(text, '"*"')
 
     def test_new_component(self): 
-        generalpage = GeneralPage(self.driver)
         common_action = CommonOperation(self.driver)
-        data = generalpage.load_general_data()
         new_component = common_action.find_target_element(GeneralObjects.New_Component[0], GeneralObjects.New_Component[1])
         
         # verify menu invisible before click
@@ -67,9 +65,9 @@ class Testgeneral(unittest.TestCase):
         self.assertTrue(have_open)
         # verify items
         elements = common_action.find_target_elements(GeneralObjects.New_Component_MenuList[0], GeneralObjects.New_Component_MenuList[1])
-        loopcount = len(data["Menulist"])
+        loopcount = len(self.data["Menulist"])
         for i in range(0, loopcount):
-            self.assertEqual(data["Menulist"]["item" + str(i)], elements[i].text)
+            self.assertEqual(self.data["Menulist"]["item" + str(i)], elements[i].text)
 
 if __name__ == "__main__":
     # unittest.main()

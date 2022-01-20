@@ -5,7 +5,5 @@ import json
 
 class LoginPage (BasePage):
 
-    def get_login(self):
-        with open('./Assets/data/login_data/logininfo.json','r',encoding='utf8') as jdata:
-            logindata = json.load(jdata)
-            return logindata
+    def reserve(self):
+        print ("reserve for future")

@@ -9,14 +9,14 @@ from TestRunner import HTMLTestRunner
 from framework.BaseBrowser import BrowserEngine
 
 class Testpopup(unittest.TestCase):
-
+    data_path = './Assets/data/general_data/general_data.json'
     @classmethod
     def setUpClass(cls):
         browse = BrowserEngine(cls)
-        cls.driver = browse.open_browser(cls)
+        cls.data = browse.load_data(cls.data_path)
+        cls.driver = browse.open_browser(cls, cls.data_path)
 
     def test_Edit_dialog(self):
-        popuppage = PopupPage(self.driver)
         common_action = CommonOperation(self.driver)
         common_action.click_ele(PopupObjects.User_Dropdown[0], PopupObjects.User_Dropdown[1])
         time.sleep(3)

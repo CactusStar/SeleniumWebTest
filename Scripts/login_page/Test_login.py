@@ -9,18 +9,17 @@ import unittest
 from TestRunner import HTMLTestRunner
 
 class TestLoginPage (unittest.TestCase):
-
+    data_path = './Assets/data/login_data/logininfo.json'
     @classmethod
     def setUpClass(cls):
         browse = BrowserEngine(cls)
-        cls.driver = browse.open_browser(cls)
+        cls.data = browse.load_data(cls.data_path)
+        cls.driver = browse.open_browser(cls, cls.data_path)
 
     def test_normal_login(self):
-        loginpage = LoginPage(self.driver)
         Common = CommonOperation(self.driver)
-        logindata = loginpage.get_login()
-        username = logindata["username"]
-        password = logindata["password"]
+        username = self.data["username"]
+        password = self.data["password"]
         Common.type_in(LoginObjects.Username[0], LoginObjects.Username[1], text=username)
         Common.type_in(LoginObjects.Password[0], LoginObjects.Password[1], text=password)
         Common.click_ele(LoginObjects.Signin[0], LoginObjects.Signin[1])
@@ -28,11 +27,9 @@ class TestLoginPage (unittest.TestCase):
         self.assertEqual(current_url, "https://github.com/")
     
     def test_invalid_password(self):
-        loginpage = LoginPage(self.driver)
         Common = CommonOperation(self.driver)
-        logindata = loginpage.get_login()
-        username = logindata["username"]
-        password = logindata["incorrect_password"]
+        username = self.data["username"]
+        password = self.data["incorrect_password"]
         Common.type_in(LoginObjects.Username[0], LoginObjects.Username[1], text=username)
         Common.type_in(LoginObjects.Password[0], LoginObjects.Password[1], text=password)
         Common.click_ele(LoginObjects.Signin[0], LoginObjects.Signin[1])
