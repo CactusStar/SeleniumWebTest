@@ -68,11 +68,18 @@ class Testgeneral(unittest.TestCase):
         loopcount = len(self.data["Menulist"])
         for i in range(0, loopcount):
             self.assertEqual(self.data["Menulist"]["item" + str(i)], elements[i].text)
+    
+    def test_headerColor(self):
+        common_action = CommonOperation(self.driver)
+        header = common_action.find_element(GeneralObjects.Header[0], GeneralObjects.Header[1])
+
+        color = header.value_of_css_property("background-color")
+        self.assertEqual(self.data["backgroundColor"], color)
 
 if __name__ == "__main__":
     # unittest.main()
     suit = unittest.TestSuite()
-    suit.addTest(Testgeneral("test_new_component"))
+    suit.addTest(Testgeneral("test_headerColor"))
     # suit.addTest(Testgeneral("test_new_Repositories"))
     with(open('TestReport/' + time.strftime('%Y%m%d%H%M',time.localtime(time.time())) + '.html', 'wb')) as fp:
         runner = HTMLTestRunner(

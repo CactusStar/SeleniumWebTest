@@ -13,5 +13,6 @@
         "item2": "New gist",
         "item3": "New organization",
         "item4": "New project"
-    }
+    },
+    "backgroundColor": "rgba(36, 41, 47, 1)"
 }
