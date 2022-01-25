@@ -42,3 +42,6 @@ class CommonOperation(BasePage):
     def switch_windows_handle(self, m):
         n = self.get_driver_handle()
         self.driver.switch_to_window(n[m])
+    
+    def refresh_current(self):
+        self.refresh_page()

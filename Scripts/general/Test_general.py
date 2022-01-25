@@ -18,7 +18,6 @@ class Testgeneral(unittest.TestCase):
 
     def test_allExistingControl(self):
         generalpage = GeneralPage(self.driver)
-        data = generalpage.load_general_data()
         # verify Repositories and Explore repositories exist
         repositories_exist = generalpage.get_exist(GeneralObjects.Repositories[0], GeneralObjects.Repositories[1])
         explore_repositories_exist = generalpage.get_exist(GeneralObjects.Explore_Repositories[0], GeneralObjects.Explore_Repositories[1])
@@ -28,19 +27,19 @@ class Testgeneral(unittest.TestCase):
         pull_request_exist = generalpage.get_exist(GeneralObjects.Pull_Request[0], GeneralObjects.Pull_Request[1])
         self.assertTrue(pull_request_exist)
         pullrequest_text = generalpage.get_text(GeneralObjects.Pull_Request[0], GeneralObjects.Pull_Request[1])
-        self.assertEqual(pullrequest_text, data["MenuBar1"])
+        self.assertEqual(pullrequest_text, self.data["MenuBar1"])
         issues_exist = generalpage.get_exist(GeneralObjects.Issues[0], GeneralObjects.Issues[1])
         self.assertTrue(issues_exist)
         issues_text = generalpage.get_text(GeneralObjects.Issues[0], GeneralObjects.Issues[1])
-        self.assertEqual(issues_text, data["MenuBar2"])
+        self.assertEqual(issues_text, self.data["MenuBar2"])
         marketplace_exist = generalpage.get_exist(GeneralObjects.Marketplace[0], GeneralObjects.Marketplace[1])
         self.assertTrue(marketplace_exist)
         marketplace_text = generalpage.get_text(GeneralObjects.Marketplace[0], GeneralObjects.Marketplace[1])
-        self.assertEqual(marketplace_text, data["MenuBar3"])
+        self.assertEqual(marketplace_text, self.data["MenuBar3"])
         explore_exist = generalpage.get_exist(GeneralObjects.Explore[0], GeneralObjects.Explore[1])
         self.assertTrue(explore_exist)
         explore_text = generalpage.get_text(GeneralObjects.Explore[0], GeneralObjects.Explore[1])
-        self.assertEqual(explore_text, data["MenuBar4"])
+        self.assertEqual(explore_text, self.data["MenuBar4"])
 
 
     def test_new_Repositories(self):

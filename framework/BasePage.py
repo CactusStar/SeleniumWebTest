@@ -167,3 +167,6 @@ class BasePage(object):
     def report_name(self):
         current_time = time.strftime('%Y-%m-%d',time.localtime(time.time()))
         return current_time
+
+    def refresh_page(self):
+        self.driver.refresh()
