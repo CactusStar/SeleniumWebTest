@@ -2,6 +2,6 @@
     "ServerPath": "https://github.com/explore/email",
     "NoneContent": "Email isn’t for everyone. Or maybe you’ve just made github.com/explore your homepage. We won’t send you any emails.",
     "DailyContent": "Start your day with a delicious cup of coffee (or perhaps an artisan matcha latte) and interesting repositories every day.",
-    "WeeklyContent": "The perfect way to keep on top of everything GitHub.Every Tuesday, we’ll send you an email with everything we found for you in the past week based on your interests.",
+    "WeeklyContent": "The perfect way to keep on top of everything GitHub. Every Tuesday, we’ll send you an email with everything we found for you in the past week based on your interests.",
     "MonthlyContent": "The best option for lurkers who want to keep up with major happenings in the open source world."
 }

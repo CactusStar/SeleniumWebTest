@@ -26,11 +26,34 @@ class Testemail(unittest.TestCase):
         self.assertTrue(daily_selected)
         none_checked = none_radio.get_attribute("checked")
         self.assertIsNone(none_checked)
-        
+
+    def test_eachlabelContent(self):
+        common_action = CommonOperation(self.driver)
+        none_content = common_action.get_text(EmailObjects.None_content[0], EmailObjects.None_content[1])
+        self.assertEqual(self.data["NoneContent"], none_content)
+        daily_content = common_action.get_text(EmailObjects.Daily_content[0], EmailObjects.Daily_content[1])
+        self.assertEqual(self.data["DailyContent"], daily_content)
+        weekly_content = common_action.get_text(EmailObjects.Weekly_content[0], EmailObjects.Weekly_content[1])
+        self.assertEqual(self.data["WeeklyContent"], weekly_content)
+        monthly_content = common_action.get_text(EmailObjects.Monthly_content[0], EmailObjects.Monthly_content[1])
+        self.assertEqual(self.data["MonthlyContent"], monthly_content)
+    
+    def test_subscribeFlash(self):
+        common_action = CommonOperation(self.driver)
+        daily_radio = common_action.find_element(EmailObjects.Daily_radio[0], EmailObjects.Daily_radio[1])
+        daily_radio.click()
+        dailySub_content = common_action.find_element(EmailObjects.DailySub_content[0], EmailObjects.DailySub_content[1])
+        time.sleep(1)
+        visible_attr = dailySub_content.get_attribute("class")
+        self.assertIn("visible", visible_attr)
+        time.sleep(3)
+        visible_attr_after = dailySub_content.get_attribute("class")
+        self.assertNotIn("visible", visible_attr_after)
+
 
 if __name__ == "__main__":
     suit = unittest.TestSuite()
-    suit.addTest(Testemail("test_labelselect"))
+    suit.addTest(Testemail("test_subscribeFlash"))
     with(open('TestReport/' + time.strftime('%Y%m%d%H%M',time.localtime(time.time())) + '.html', 'wb')) as fp:
         runner = HTMLTestRunner(
             stream=fp,

@@ -15,4 +15,5 @@ class EmailObjects(BasePage):
     Monthly_label = ["xpath", '//*[@id="js-pjax-container"]/div[3]/form/div/label[4]']
     Monthly_radio = ["id", "kind_monthly"]
     Monthly_content = ["xpath", '//*[@id="js-pjax-container"]/div[3]/form/div/label[4]/p']
+    DailySub_content = ["xpath", '//*[@id="js-pjax-container"]/div[3]/form/div/label[2]/span']
     
