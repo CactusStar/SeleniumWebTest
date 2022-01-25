@@ -5,6 +5,9 @@ from selenium.webdriver.common.by import By
 import os,platform, time
 import json
 import sys
+import re
+import requests
+
 sys.path.append('C://Users//XHe1//Desktop//MyProject//SeleniumWebTest')
 
 logger = Logger(logger="BasePage").getlog()
@@ -15,6 +18,39 @@ class BasePage(object):
 
     def __init__(self, driver):
         self.driver = driver
+        self.headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36"
+        }
+
+    def get_token(self):
+        
+        login_url = "https://github.com/login"
+        r = requests.session().get(login_url, headers = self.headers)
+        authenticity_token = re.findall('<input type="hidden" name="authenticity_token" value="(.*?)" />', r.text)
+        print("authenticity_token：{}".format(authenticity_token))
+        return authenticity_token[1]
+
+    def github_login(self, authenticity_token, username, password):
+        session_url = "https://github.com/session"
+        body = {
+            "authenticity_token":authenticity_token,
+            "commit":"Sign in",
+            "login":username,
+            "password":password,
+            "utf8":"✓",
+            "webauthn-support":"unknown"
+        }
+        r = self.s.post(session_url, headers = self.headers, data = body)
+        title = re.findall('<title>(.+?)</title>',r.text)
+        print("title：%s" %title[0])
+        return title[0]
+
+    # 通过 title 判断是否登录成功
+    def is_login_success(self, title):
+        if "GitHub" == title:
+            return True
+        else:
+            return False
 
     def open_Browser(self, url):
         self.driver.get(url)
