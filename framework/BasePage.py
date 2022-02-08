@@ -180,6 +180,9 @@ class BasePage(object):
     def execute_script(self, script):
         return self.driver.execute_script(script)
     
+    def move_mousescroll_target(self, element):
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+
     def get_token(self):
         token = self.driver.execute_script('window.sessionStorage.getItem("token")')
         return token

@@ -45,3 +45,6 @@ class CommonOperation(BasePage):
     
     def refresh_current(self):
         self.refresh_page()
+    
+    def move_mousescroll(self, element): 
+        self.move_mousescroll_target(element)
