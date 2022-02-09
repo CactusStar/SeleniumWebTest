@@ -19,18 +19,18 @@ class TestMarketplace(unittest.TestCase):
     def test_treeitems(self):
         common_actions = CommonOperation(self.driver)
         # data = common_actions.load_data(self.data_path)
-        list = common_actions.find_elements(MarketplaceObjects.Type_list[0], MarketplaceObjects.Type_list[1])
+        list = common_actions.find_target_elements(MarketplaceObjects.Type_list[0], MarketplaceObjects.Type_list[1])
         loopcount = len(list)
         for i in range (0, loopcount):
             self.assertEqual(self.data["Typelist"]["item" + str(i)], list[i].text)
 
     def test_free(self):
         common_actions = CommonOperation(self.driver)
-        explore_free = common_actions.find_element(MarketplaceObjects.Free_link[0], MarketplaceObjects.Free_link[1])
+        explore_free = common_actions.find_target_element(MarketplaceObjects.Free_link[0], MarketplaceObjects.Free_link[1])
         explore_free.click()
         free_link = common_actions.get_current_url()
         self.assertEqual(self.data["Freelink"], free_link)
-        close_link = common_actions.find_element(MarketplaceObjects.Closefree_link[0], MarketplaceObjects.Closefree_link[1])
+        close_link = common_actions.find_target_element(MarketplaceObjects.Closefree_link[0], MarketplaceObjects.Closefree_link[1])
         close_link.click()
         market_link = common_actions.get_current_url()
         self.assertEqual(self.data["marketlink"], market_link)

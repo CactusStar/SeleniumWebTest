@@ -17,16 +17,16 @@ class Testnotification(unittest.TestCase):
 
     def test_verificationMessage(self):
         common_action = CommonOperation(self.driver)
-        common_action.find_element(NotificationObjects.Settings_button[0], NotificationObjects.Settings_button[1]).click()
+        common_action.find_target_element(NotificationObjects.Settings_button[0], NotificationObjects.Settings_button[1]).click()
         time.sleep(3)
-        common_action.find_element(NotificationObjects.CreateFilter_button[0], NotificationObjects.CreateFilter_button[1]).click()
-        common_action.find_element(NotificationObjects.Create_button[0], NotificationObjects.Create_button[1]).click()
-        message = common_action.find_element(NotificationObjects.Create_input[0], NotificationObjects.Create_input[1]).get_attribute("validationMessage")
+        common_action.find_target_element(NotificationObjects.CreateFilter_button[0], NotificationObjects.CreateFilter_button[1]).click()
+        common_action.find_target_element(NotificationObjects.Create_button[0], NotificationObjects.Create_button[1]).click()
+        message = common_action.find_target_element(NotificationObjects.Create_input[0], NotificationObjects.Create_input[1]).get_attribute("validationMessage")
         self.assertEqual(self.data["validationMessage"], message)
     
     def test_notificationTooltip(self):
         common_action = CommonOperation(self.driver)
-        notifcation_button = common_action.find_element(NotificationObjects.Notification_button[0], NotificationObjects.Notification_button[1])
+        notifcation_button = common_action.find_target_element(NotificationObjects.Notification_button[0], NotificationObjects.Notification_button[1])
         # message = ActionChains.move_to_element(self.driver, to_element=notifcation_button).getText()
         # message = ActionChains(self.driver).move_to_element(notifcation_button).getText()
         message = notifcation_button.get_attribute("aria-label")

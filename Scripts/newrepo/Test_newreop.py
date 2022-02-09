@@ -18,12 +18,12 @@ class Testnewrepo(unittest.TestCase):
 
     def test_controlstatus(self):
         common_action = CommonOperation(self.driver)
-        public_radio = common_action.find_element(NewReopObjects.Public_radio[0], NewReopObjects.Public_radio[1])
-        private_radio = common_action.find_element(NewReopObjects.Private_radio[0], NewReopObjects.Private_radio[1])
-        addreadme_checkbox = common_action.find_element(NewReopObjects.Add_RM_checkbox[0], NewReopObjects.Add_RM_checkbox[1])
-        addignore_checkbox = common_action.find_element(NewReopObjects.Add_Ignore_checkbox[0], NewReopObjects.Add_Ignore_checkbox[1])
-        chooselicen_checkbox = common_action.find_element(NewReopObjects.Choose_license_checkbox[0], NewReopObjects.Choose_license_checkbox[1])
-        create_button = common_action.find_element(NewReopObjects.Create_repo_button[0], NewReopObjects.Create_repo_button[1])
+        public_radio = common_action.find_target_element(NewReopObjects.Public_radio[0], NewReopObjects.Public_radio[1])
+        private_radio = common_action.find_target_element(NewReopObjects.Private_radio[0], NewReopObjects.Private_radio[1])
+        addreadme_checkbox = common_action.find_target_element(NewReopObjects.Add_RM_checkbox[0], NewReopObjects.Add_RM_checkbox[1])
+        addignore_checkbox = common_action.find_target_element(NewReopObjects.Add_Ignore_checkbox[0], NewReopObjects.Add_Ignore_checkbox[1])
+        chooselicen_checkbox = common_action.find_target_element(NewReopObjects.Choose_license_checkbox[0], NewReopObjects.Choose_license_checkbox[1])
+        create_button = common_action.find_target_element(NewReopObjects.Create_repo_button[0], NewReopObjects.Create_repo_button[1])
         self.assertTrue(public_radio.is_selected())
         private_radio.click()
         self.assertFalse(public_radio.is_selected())
@@ -41,28 +41,28 @@ class Testnewrepo(unittest.TestCase):
     
     def test_import_cancel(self):
         common_action = CommonOperation(self.driver)
-        import_link = common_action.find_elements(NewReopObjects.ImportRepo_link[0], NewReopObjects.ImportRepo_link[1])
+        import_link = common_action.find_target_elements(NewReopObjects.ImportRepo_link[0], NewReopObjects.ImportRepo_link[1])
         import_link[1].click()
         self.assertEqual(common_action.get_current_url(), self.data["importlink"])
-        cancel_button = common_action.find_element(NewReopObjects.Cancel_button[0], NewReopObjects.Cancel_button[1])
+        cancel_button = common_action.find_target_element(NewReopObjects.Cancel_button[0], NewReopObjects.Cancel_button[1])
         cancel_button.click()
         self.assertEqual(common_action.get_current_url(), self.data["cancellink"])
 
     def test_learnmore(self):
         common_action = CommonOperation(self.driver)
-        common_action.find_element(NewReopObjects.Add_RM_Learnmore_link[0], NewReopObjects.Add_RM_Learnmore_link[1]).click()
+        common_action.find_target_element(NewReopObjects.Add_RM_Learnmore_link[0], NewReopObjects.Add_RM_Learnmore_link[1]).click()
         common_action.switch_windows_handle(-1)
         jump_url = common_action.get_current_url()
         self.assertEqual(self.data["addreadmelearnmore"], jump_url)
     
     def test_hidencontent(self):
         common_action = CommonOperation(self.driver)
-        hiden_list = common_action.find_element(NewReopObjects.License_hiden_list[0], NewReopObjects.License_hiden_list[1])
+        hiden_list = common_action.find_target_element(NewReopObjects.License_hiden_list[0], NewReopObjects.License_hiden_list[1])
         # display_attribute = hiden_list.value_of_css_property("display")
         display_attribute = hiden_list.is_displayed()
         self.assertFalse(display_attribute)
         # self.assertEqual(display_attribute, "none")
-        chooselicen_checkbox = common_action.find_element(NewReopObjects.Choose_license_checkbox[0], NewReopObjects.Choose_license_checkbox[1])
+        chooselicen_checkbox = common_action.find_target_element(NewReopObjects.Choose_license_checkbox[0], NewReopObjects.Choose_license_checkbox[1])
         chooselicen_checkbox.click()
         # display_attribute = hiden_list.value_of_css_property("display")
         # self.assertEqual(display_attribute, "block")

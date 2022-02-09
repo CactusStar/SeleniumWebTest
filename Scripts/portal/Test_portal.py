@@ -17,13 +17,13 @@ class Testportal(unittest.TestCase):
 
     def test_animate(self):
         common_action = CommonOperation(self.driver)
-        otherlines = common_action.find_elements(PortalObjects.Otherlines_input[0], PortalObjects.Otherlines_input[1])
+        otherlines = common_action.find_target_elements(PortalObjects.Otherlines_input[0], PortalObjects.Otherlines_input[1])
         loopcount = len(otherlines)
         for i in range(0, loopcount):
             if i == 0:
                 continue
             self.assertEqual(otherlines[i].value_of_css_property("visibility"), self.data["VisiblityAttribute"]["item0"])
-        target = common_action.find_element(PortalObjects.Firstline_input[0], PortalObjects.Firstline_input[1])
+        target = common_action.find_target_element(PortalObjects.Firstline_input[0], PortalObjects.Firstline_input[1])
         common_action.move_mousescroll(target)
         time.sleep(3)
         

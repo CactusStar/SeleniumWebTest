@@ -17,10 +17,10 @@ class Testemail(unittest.TestCase):
 
     def test_labelselect(self):
         common_action = CommonOperation(self.driver)
-        none_radio = common_action.find_element(EmailObjects.None_radio[0], EmailObjects.None_radio[1])
+        none_radio = common_action.find_target_element(EmailObjects.None_radio[0], EmailObjects.None_radio[1])
         none_selected = none_radio.is_selected()
         self.assertTrue(none_selected)
-        daily_radio = common_action.find_element(EmailObjects.Daily_radio[0], EmailObjects.Daily_radio[1])
+        daily_radio = common_action.find_target_element(EmailObjects.Daily_radio[0], EmailObjects.Daily_radio[1])
         daily_radio.click()
         daily_selected = daily_radio.is_selected()
         self.assertTrue(daily_selected)
@@ -40,9 +40,9 @@ class Testemail(unittest.TestCase):
     
     def test_subscribeFlash(self):
         common_action = CommonOperation(self.driver)
-        daily_radio = common_action.find_element(EmailObjects.Daily_radio[0], EmailObjects.Daily_radio[1])
+        daily_radio = common_action.find_target_element(EmailObjects.Daily_radio[0], EmailObjects.Daily_radio[1])
         daily_radio.click()
-        dailySub_content = common_action.find_element(EmailObjects.DailySub_content[0], EmailObjects.DailySub_content[1])
+        dailySub_content = common_action.find_target_element(EmailObjects.DailySub_content[0], EmailObjects.DailySub_content[1])
         time.sleep(1)
         visible_attr = dailySub_content.get_attribute("class")
         self.assertIn("visible", visible_attr)

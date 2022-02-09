@@ -18,27 +18,28 @@ class Testgeneral(unittest.TestCase):
 
     def test_allExistingControl(self):
         generalpage = GeneralPage(self.driver)
+        common_action = CommonOperation(self.driver)
         # verify Repositories and Explore repositories exist
-        repositories_exist = generalpage.get_exist(GeneralObjects.Repositories[0], GeneralObjects.Repositories[1])
-        explore_repositories_exist = generalpage.get_exist(GeneralObjects.Explore_Repositories[0], GeneralObjects.Explore_Repositories[1])
+        repositories_exist = common_action.get_exist(GeneralObjects.Repositories[0], GeneralObjects.Repositories[1])
+        explore_repositories_exist = common_action.get_exist(GeneralObjects.Explore_Repositories[0], GeneralObjects.Explore_Repositories[1])
         self.assertTrue(repositories_exist)
         self.assertTrue(explore_repositories_exist)
         #verify the menubar exist and the text is correct
-        pull_request_exist = generalpage.get_exist(GeneralObjects.Pull_Request[0], GeneralObjects.Pull_Request[1])
+        pull_request_exist = common_action.get_exist(GeneralObjects.Pull_Request[0], GeneralObjects.Pull_Request[1])
         self.assertTrue(pull_request_exist)
-        pullrequest_text = generalpage.get_text(GeneralObjects.Pull_Request[0], GeneralObjects.Pull_Request[1])
+        pullrequest_text = common_action.get_text(GeneralObjects.Pull_Request[0], GeneralObjects.Pull_Request[1])
         self.assertEqual(pullrequest_text, self.data["MenuBar1"])
-        issues_exist = generalpage.get_exist(GeneralObjects.Issues[0], GeneralObjects.Issues[1])
+        issues_exist = common_action.get_exist(GeneralObjects.Issues[0], GeneralObjects.Issues[1])
         self.assertTrue(issues_exist)
-        issues_text = generalpage.get_text(GeneralObjects.Issues[0], GeneralObjects.Issues[1])
+        issues_text = common_action.get_text(GeneralObjects.Issues[0], GeneralObjects.Issues[1])
         self.assertEqual(issues_text, self.data["MenuBar2"])
-        marketplace_exist = generalpage.get_exist(GeneralObjects.Marketplace[0], GeneralObjects.Marketplace[1])
+        marketplace_exist = common_action.get_exist(GeneralObjects.Marketplace[0], GeneralObjects.Marketplace[1])
         self.assertTrue(marketplace_exist)
-        marketplace_text = generalpage.get_text(GeneralObjects.Marketplace[0], GeneralObjects.Marketplace[1])
+        marketplace_text = common_action.get_text(GeneralObjects.Marketplace[0], GeneralObjects.Marketplace[1])
         self.assertEqual(marketplace_text, self.data["MenuBar3"])
-        explore_exist = generalpage.get_exist(GeneralObjects.Explore[0], GeneralObjects.Explore[1])
+        explore_exist = common_action.get_exist(GeneralObjects.Explore[0], GeneralObjects.Explore[1])
         self.assertTrue(explore_exist)
-        explore_text = generalpage.get_text(GeneralObjects.Explore[0], GeneralObjects.Explore[1])
+        explore_text = common_action.get_text(GeneralObjects.Explore[0], GeneralObjects.Explore[1])
         self.assertEqual(explore_text, self.data["MenuBar4"])
 
 
@@ -70,7 +71,7 @@ class Testgeneral(unittest.TestCase):
     
     def test_headerColor(self):
         common_action = CommonOperation(self.driver)
-        header = common_action.find_element(GeneralObjects.Header[0], GeneralObjects.Header[1])
+        header = common_action.find_target_element(GeneralObjects.Header[0], GeneralObjects.Header[1])
 
         color = header.value_of_css_property("background-color")
         self.assertEqual(self.data["backgroundColor"], color)

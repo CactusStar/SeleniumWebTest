@@ -19,23 +19,23 @@ class Testrepo(unittest.TestCase):
 
     def test_fulltext(self):
         common_action = CommonOperation(self.driver)
-        common_action.find_element(RepoObjects.ReadMe_button[0], RepoObjects.ReadMe_button[1]).click()
+        common_action.find_target_element(RepoObjects.ReadMe_button[0], RepoObjects.ReadMe_button[1]).click()
         full_text = common_action.get_text(RepoObjects.Editplace_editbox[0], RepoObjects.Editplace_editbox[1])
         final_text = full_text.split("\n")[1]
         self.assertEqual(self.data["Content"]["item0"], final_text)
-        full_text_control = common_action.find_element(RepoObjects.Editplace_editbox[0], RepoObjects.Editplace_editbox[1])
+        full_text_control = common_action.find_target_element(RepoObjects.Editplace_editbox[0], RepoObjects.Editplace_editbox[1])
         full_text_control.click()
         # ActionChains(self.driver).send_keys(KEY_ENTER).perform()
         full_text_control.send_keys(Keys.ENTER)
         full_text_control.send_keys("abc")
-        lines = common_action.find_elements(RepoObjects.lines_edit[0], RepoObjects.lines_edit[1])
+        lines = common_action.find_target_elements(RepoObjects.lines_edit[0], RepoObjects.lines_edit[1])
         loopcount = len(self.data["Content"])
         for i in range(0, loopcount):
             self.assertEqual(self.data["Content"]["item"+str(i)], lines[i].text)
     
     def test_navigationHover(self): 
         common_action = CommonOperation(self.driver)
-        firstline = common_action.find_element(RepoObjects.firstline_row[0], RepoObjects.firstline_row[1])
+        firstline = common_action.find_target_element(RepoObjects.firstline_row[0], RepoObjects.firstline_row[1])
         common_action.Hover(firstline)
         haveFocus = firstline.get_attribute("class")
         self.assertIn("navigation-focus", haveFocus)
