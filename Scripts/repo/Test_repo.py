@@ -31,11 +31,18 @@ class Testrepo(unittest.TestCase):
         lines = common_action.find_elements(RepoObjects.lines_edit[0], RepoObjects.lines_edit[1])
         loopcount = len(self.data["Content"])
         for i in range(0, loopcount):
-            self.assertEqual(self.data["Content"]["item"+str(i)], lines[i].text)   
+            self.assertEqual(self.data["Content"]["item"+str(i)], lines[i].text)
+    
+    def test_navigationHover(self): 
+        common_action = CommonOperation(self.driver)
+        firstline = common_action.find_element(RepoObjects.firstline_row[0], RepoObjects.firstline_row[1])
+        common_action.Hover(firstline)
+        haveFocus = firstline.get_attribute("class")
+        self.assertIn("navigation-focus", haveFocus)
 
 if __name__ == "__main__":
     suit = unittest.TestSuite()
-    suit.addTest(Testrepo("test_fulltext"))
+    suit.addTest(Testrepo("test_navigationHover"))
     with(open('TestReport/' + time.strftime('%Y%m%d%H%M',time.localtime(time.time())) + '.html', 'wb')) as fp:
         runner = HTMLTestRunner(
             stream=fp,

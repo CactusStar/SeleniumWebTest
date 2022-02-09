@@ -6,4 +6,5 @@ class RepoObjects(BasePage):
     ReadMe_button = ["xpath", '//*[@id="repo-content-pjax-container"]/div/div[2]/div[1]/div[4]/a']
     Editplace_editbox = ["id", "code-editor"]
     lines_edit = ["xpath", '//*[@id="code-editor"]/div/pre/span']
+    firstline_row = ['xpath', '//*[@id="repo-content-pjax-container"]/div/div[3]/div[1]/div[3]/div[3]/div[1]/div[2]']
 

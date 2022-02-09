@@ -7,6 +7,7 @@ import json
 import sys
 import re
 import requests
+from selenium.webdriver.common.action_chains import ActionChains
 
 sys.path.append('C://Users//XHe1//Desktop//MyProject//SeleniumWebTest')
 
@@ -209,3 +210,6 @@ class BasePage(object):
 
     def refresh_page(self):
         self.driver.refresh()
+    
+    def mouseHover(self, element):
+        ActionChains(self.driver).move_to_element(to_element=element).perform()

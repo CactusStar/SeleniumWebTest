@@ -48,3 +48,6 @@ class CommonOperation(BasePage):
     
     def move_mousescroll(self, element): 
         self.move_mousescroll_target(element)
+    
+    def Hover(self, element):
+        self.mouseHover(element)
