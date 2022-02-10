@@ -40,9 +40,27 @@ class Testrepo(unittest.TestCase):
         haveFocus = firstline.get_attribute("class")
         self.assertIn("navigation-focus", haveFocus)
 
+    def test_thirdpartyExtension(self):
+        common_action = CommonOperation(self.driver)
+        common_action.find_target_element(RepoObjects.sourcegraph_button[0], RepoObjects.sourcegraph_button[1]).click()
+        common_action.switch_windows_handle(-1)
+        jump_url = common_action.get_current_url()
+        self.assertEqual(jump_url, self.data["jumpURL"])
+
+        common_action.find_target_element(RepoObjects.DailyTask_treeitem[0], RepoObjects.DailyTask_treeitem[1]).click()
+        time.sleep(3)
+        dailytask_edit = common_action.find_target_elements(RepoObjects.DailyTask_edit[0], RepoObjects.DailyTask_edit[1])
+        expected_text = dailytask_edit[1].text
+        self.assertEqual(expected_text, self.data["Head"])
+
+        common_action.switch_windows_handle(0)
+        # branch_menu = common_action.find_target_element(RepoObjects.Branch_menu[0], RepoObjects.Branch_menu[1])
+        exist = common_action.get_element_text(RepoObjects.Branch_menu[0], RepoObjects.Branch_menu[1])
+        self.assertTrue(exist)
+
 if __name__ == "__main__":
     suit = unittest.TestSuite()
-    suit.addTest(Testrepo("test_navigationHover"))
+    suit.addTest(Testrepo("test_thirdpartyExtension"))
     with(open('TestReport/' + time.strftime('%Y%m%d%H%M',time.localtime(time.time())) + '.html', 'wb')) as fp:
         runner = HTMLTestRunner(
             stream=fp,

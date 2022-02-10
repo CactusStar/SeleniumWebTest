@@ -51,3 +51,9 @@ class CommonOperation(BasePage):
     
     def Hover(self, element):
         self.mouseHover(element)
+    
+    def rightclick_object(self, element):
+        self.rightclick(element)
+    
+    def doubleclick_object(self, element):
+        self.doubleclick(element)

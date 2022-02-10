@@ -1,3 +1,4 @@
+from argparse import Action
 from selenium import webdriver
 from framework.logger import Logger
 from selenium.common.exceptions import NoSuchElementException
@@ -213,3 +214,9 @@ class BasePage(object):
     
     def mouseHover(self, element):
         ActionChains(self.driver).move_to_element(to_element=element).perform()
+    
+    def rightclick(self, element):
+        ActionChains(self.driver).context_click(element).perform()
+    
+    def doubleclick(self, element):
+        ActionChains(self.driver).double_click(element).perform()
