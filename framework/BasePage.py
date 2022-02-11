@@ -9,6 +9,8 @@ import sys
 import re
 import requests
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 sys.path.append('C://Users//XHe1//Desktop//MyProject//SeleniumWebTest')
 
@@ -171,7 +173,7 @@ class BasePage(object):
         except:
             flag = False
         print(flag)
-        return flag 
+        return flag
 
     def get_element_text(self, by, value):
         return self.find_element(by, value).text
@@ -190,7 +192,7 @@ class BasePage(object):
         return token
     # wait
     def wait(self, seconds):
-        self.driver.implicit_wait(seconds)
+        self.driver.implicitly_wait(seconds)
 
     # close current window
     def close(self):
@@ -220,3 +222,32 @@ class BasePage(object):
     
     def doubleclick(self, element):
         ActionChains(self.driver).double_click(element).perform()
+    
+    def getlocator(self, by):
+        try:
+            if by == "id":
+                locate = By.ID
+            elif by == "name":
+                locate = By.NAME
+            elif by == "class":
+                locate = By.CLASS_NAME
+            elif by == "link_text":
+                locate = By.LINK_TEXT
+            elif by == "xpath":
+                locate = By.XPATH
+            elif by == "tag":
+                locate = By.TAG_NAME
+            elif by == "css":
+                locate = By.CSS_SELECTOR
+            else:
+                raise NameError("Please enter the elements,'id','name','class','link_text','xpath','css','tag'.")
+        except:
+            logger.error("The locator is incorrect, please check")
+        return locate
+    def waitTillExist(self, by, value):
+        locate = self.getlocator(by)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((locate, value)))
+
+    def waitTillnotExist(self, by, value):
+        locate = self.getlocator(by)
+        WebDriverWait(self.driver, 10).until_not(EC.presence_of_element_located((locate, value)))

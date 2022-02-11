@@ -43,8 +43,9 @@ class Testrepo(unittest.TestCase):
     def test_thirdpartyExtension(self):
         common_action = CommonOperation(self.driver)
         common_action.find_target_element(RepoObjects.sourcegraph_button[0], RepoObjects.sourcegraph_button[1]).click()
-        time.sleep(3)
+        # time.sleep(3)
         common_action.switch_windows_handle(-1)
+        common_action.waitload(20)
         jump_url = common_action.get_current_url()
         self.assertEqual(jump_url, self.data["jumpURL"])
 
@@ -74,9 +75,13 @@ class Testrepo(unittest.TestCase):
         count_after = len(lis_after)
         self.assertEqual(count_after, 1)
 
+    def test_ButtonExist(self):
+        common_action = CommonOperation(self.driver)
+        common_action.waitTillObjectExist(RepoObjects.sourcegraph_button[0], RepoObjects.sourcegraph_button[1])
+
 if __name__ == "__main__":
     suit = unittest.TestSuite()
-    suit.addTest(Testrepo("test_gotofileSearch"))
+    suit.addTest(Testrepo("test_thirdpartyExtension"))
     with(open('TestReport/' + time.strftime('%Y%m%d%H%M',time.localtime(time.time())) + '.html', 'wb')) as fp:
         runner = HTMLTestRunner(
             stream=fp,

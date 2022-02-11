@@ -8,7 +8,7 @@ class CommonOperation(BasePage):
             jsondata = json.load(jsondata)
         return jsondata
 
-    def wait_until(self, seconds):
+    def waitload(self, seconds):
         self.wait(seconds)
 
     def get_exist(self, by, value):
@@ -57,3 +57,6 @@ class CommonOperation(BasePage):
     
     def doubleclick_object(self, element):
         self.doubleclick(element)
+    
+    def waitTillObjectExist(self, by, value):
+        self.waitTillExist(by, value)
