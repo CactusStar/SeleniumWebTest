@@ -11,4 +11,7 @@ class RepoObjects(BasePage):
     DailyTask_treeitem = ['css', 'a[title="DailyTask.md"]']
     DailyTask_edit = ['tag', 'h1']
     Branch_menu = ["id", "branch-select-menu"]
+    GotoFile_button = ['css', 'a[data-ga-click="Repository, find file, location:repo overview"]']
+    Search_input = ['id', 'tree-finder-field']
+    ProjectTree_tree = ['id', 'tree-browser']
 

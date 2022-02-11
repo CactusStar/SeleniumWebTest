@@ -43,6 +43,7 @@ class Testrepo(unittest.TestCase):
     def test_thirdpartyExtension(self):
         common_action = CommonOperation(self.driver)
         common_action.find_target_element(RepoObjects.sourcegraph_button[0], RepoObjects.sourcegraph_button[1]).click()
+        time.sleep(3)
         common_action.switch_windows_handle(-1)
         jump_url = common_action.get_current_url()
         self.assertEqual(jump_url, self.data["jumpURL"])
@@ -57,10 +58,25 @@ class Testrepo(unittest.TestCase):
         # branch_menu = common_action.find_target_element(RepoObjects.Branch_menu[0], RepoObjects.Branch_menu[1])
         exist = common_action.get_element_text(RepoObjects.Branch_menu[0], RepoObjects.Branch_menu[1])
         self.assertTrue(exist)
+    
+    def test_gotofileSearch(self): 
+        common_action = CommonOperation(self.driver)
+        common_action.find_target_element(RepoObjects.GotoFile_button[0], RepoObjects.GotoFile_button[1]).click()
+        ul = common_action.find_target_element(RepoObjects.ProjectTree_tree[0], RepoObjects.ProjectTree_tree[1])
+        lis_before = ul.find_elements_by_xpath('li')
+        count_before = len(lis_before)
+        self.assertEqual(count_before, 3)
+        common_action.find_target_element(RepoObjects.Search_input[0], RepoObjects.Search_input[1]).click()
+        common_action.type_in(RepoObjects.Search_input[0], RepoObjects.Search_input[1], "Auto")
+        time.sleep(3)
+        # ul = common_action.find_target_element(RepoObjects.ProjectTree_tree[0], RepoObjects.ProjectTree_tree[1])
+        lis_after = ul.find_elements_by_xpath('li')
+        count_after = len(lis_after)
+        self.assertEqual(count_after, 1)
 
 if __name__ == "__main__":
     suit = unittest.TestSuite()
-    suit.addTest(Testrepo("test_thirdpartyExtension"))
+    suit.addTest(Testrepo("test_gotofileSearch"))
     with(open('TestReport/' + time.strftime('%Y%m%d%H%M',time.localtime(time.time())) + '.html', 'wb')) as fp:
         runner = HTMLTestRunner(
             stream=fp,
