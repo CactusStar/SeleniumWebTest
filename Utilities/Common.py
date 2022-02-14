@@ -60,3 +60,6 @@ class CommonOperation(BasePage):
     
     def waitTillObjectExist(self, by, value):
         self.waitTillExist(by, value)
+    
+    def waitTillObjectEnabled(self, by, value):
+        self.waitTillEnable(by, value)

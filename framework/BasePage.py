@@ -251,3 +251,12 @@ class BasePage(object):
     def waitTillnotExist(self, by, value):
         locate = self.getlocator(by)
         WebDriverWait(self.driver, 10).until_not(EC.presence_of_element_located((locate, value)))
+
+    def waitTillEnable(self, by, value):
+        '''wait till some controls to be enabled'''
+        # locate = self.getlocator(by)
+        WebDriverWait(self.driver, 10).until(EC.element_is_enabled((self.find_element(by, value))))
+
+    def waitTillDisable(self, by, value):
+        '''wait till some controls to be disabled'''
+        WebDriverWait(self.driver, 10).until_not(EC.element_is_enabled((self.find_element(by, value))))
