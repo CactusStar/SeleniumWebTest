@@ -14,4 +14,9 @@ class RepoObjects(BasePage):
     GotoFile_button = ['css', 'a[data-ga-click="Repository, find file, location:repo overview"]']
     Search_input = ['id', 'tree-finder-field']
     ProjectTree_tree = ['id', 'tree-browser']
-
+    Issue_tab = ['id', 'issues-tab']
+    NewIssue_button = ['xpath', '//*[@id="repo-content-pjax-container"]/div/div[2]/div[2]']
+    Issuetitle_input = ['id', 'issue_title']
+    SubmitIssue_button = ['xpath', '//*[@id="new_issue"]/div/div/div[1]/div/div[1]/div/div[2]/button']
+    Issuecount_number = ['id', 'issues-repo-tab-count']
+    Issueheadline_text = ['xpath', '//*[@id="partial-discussion-header"]/div[1]/div/h1']

@@ -78,10 +78,24 @@ class Testrepo(unittest.TestCase):
     def test_ButtonExist(self):
         common_action = CommonOperation(self.driver)
         common_action.waitTillObjectExist(RepoObjects.sourcegraph_button[0], RepoObjects.sourcegraph_button[1])
+    
+    def test_newIssue(self):
+        common_action = CommonOperation(self.driver)
+        beforecount = common_action.find_target_element(RepoObjects.Issuecount_number[0], RepoObjects.Issuecount_number[1]).text
+        common_action.find_target_element(RepoObjects.Issue_tab[0], RepoObjects.Issue_tab[1]).click()
+        common_action.waitTillObjectExist(RepoObjects.NewIssue_button[0], RepoObjects.NewIssue_button[1])
+        common_action.find_target_element(RepoObjects.NewIssue_button[0], RepoObjects.NewIssue_button[1]).click()
+        common_action.type_in(RepoObjects.Issuetitle_input[0], RepoObjects.Issuetitle_input[1], "thisisTest1")
+        common_action.waitTillObjectEnabled(RepoObjects.SubmitIssue_button[0], RepoObjects.SubmitIssue_button[1])
+        common_action.find_target_element(RepoObjects.SubmitIssue_button[0], RepoObjects.SubmitIssue_button[1]).click()
+        common_action.waitTillObjectExist(RepoObjects.Issueheadline_text[0], RepoObjects.Issueheadline_text[1])
+        aftercount = common_action.find_target_element(RepoObjects.Issuecount_number[0], RepoObjects.Issuecount_number[1]).text
+        self.assertEqual(int(beforecount)+1, int(aftercount))
+
 
 if __name__ == "__main__":
     suit = unittest.TestSuite()
-    suit.addTest(Testrepo("test_thirdpartyExtension"))
+    suit.addTest(Testrepo("test_newIssue"))
     with(open('TestReport/' + time.strftime('%Y%m%d%H%M',time.localtime(time.time())) + '.html', 'wb')) as fp:
         runner = HTMLTestRunner(
             stream=fp,
