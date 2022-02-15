@@ -20,3 +20,5 @@ class RepoObjects(BasePage):
     SubmitIssue_button = ['xpath', '//*[@id="new_issue"]/div/div/div[1]/div/div[1]/div/div[2]/button']
     Issuecount_number = ['id', 'issues-repo-tab-count']
     Issueheadline_text = ['xpath', '//*[@id="partial-discussion-header"]/div[1]/div/h1']
+    Issue4_link = ['id', 'issue_4_link']
+    Comments_textarea = ['id', 'new_comment_field']

@@ -91,11 +91,22 @@ class Testrepo(unittest.TestCase):
         common_action.waitTillObjectExist(RepoObjects.Issueheadline_text[0], RepoObjects.Issueheadline_text[1])
         aftercount = common_action.find_target_element(RepoObjects.Issuecount_number[0], RepoObjects.Issuecount_number[1]).text
         self.assertEqual(int(beforecount)+1, int(aftercount))
-
+    
+    def test_enterComments(self):
+        common_action = CommonOperation(self.driver)
+        common_action.find_target_element(RepoObjects.Issue_tab[0], RepoObjects.Issue_tab[1]).click()
+        common_action.waitTillObjectExist(RepoObjects.Issue4_link[0], RepoObjects.Issue4_link[1])
+        common_action.find_target_element(RepoObjects.Issue4_link[0], RepoObjects.Issue4_link[1]).click()
+        common_action.waitTillObjectExist(RepoObjects.Comments_textarea[0], RepoObjects.Comments_textarea[1])
+        common_action.find_target_element(RepoObjects.Comments_textarea[0], RepoObjects.Comments_textarea[1]).click()
+        common_action.find_target_element(RepoObjects.Comments_textarea[0], RepoObjects.Comments_textarea[1]).send_keys("this is text")
+        time.sleep(5)
+        value = common_action.find_target_element(RepoObjects.Comments_textarea[0], RepoObjects.Comments_textarea[1]).get_attribute("value")
+        self.assertEqual(value, "this is text")
 
 if __name__ == "__main__":
     suit = unittest.TestSuite()
-    suit.addTest(Testrepo("test_newIssue"))
+    suit.addTest(Testrepo("test_enterComments"))
     with(open('TestReport/' + time.strftime('%Y%m%d%H%M',time.localtime(time.time())) + '.html', 'wb')) as fp:
         runner = HTMLTestRunner(
             stream=fp,
