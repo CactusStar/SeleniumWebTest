@@ -1,4 +1,5 @@
 import sys
+from typing import Any
 sys.path.append('C://Users//XHe1//Desktop//MyProject//SeleniumWebTest')
 from framework.BasePage import BasePage
 
@@ -22,3 +23,6 @@ class RepoObjects(BasePage):
     Issueheadline_text = ['xpath', '//*[@id="partial-discussion-header"]/div[1]/div/h1']
     Issue4_link = ['id', 'issue_4_link']
     Comments_textarea = ['id', 'new_comment_field']
+    Issue6_link = ['id', 'issue_10_link']
+    CloseIssue_button = ['name', 'comment_and_close']
+    CloseTime_text = ['xpath', '//*[@id="event-6079327448"]/div[2]/a[3]/relative-time']

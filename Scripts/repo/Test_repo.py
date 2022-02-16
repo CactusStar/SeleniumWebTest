@@ -1,7 +1,7 @@
 import sys
 sys.path.append('C://Users//XHe1//Desktop//MyProject//SeleniumWebTest')
 import unittest
-import time
+import time, datetime
 from Objects.repo_objects import RepoObjects
 from Utilities.Common import CommonOperation
 from TestRunner import HTMLTestRunner
@@ -104,9 +104,29 @@ class Testrepo(unittest.TestCase):
         value = common_action.find_target_element(RepoObjects.Comments_textarea[0], RepoObjects.Comments_textarea[1]).get_attribute("value")
         self.assertEqual(value, "this is text")
 
+    def test_closeAutoRefresh(self):
+        common_action = CommonOperation(self.driver)
+        common_action.find_target_element(RepoObjects.Issue_tab[0], RepoObjects.Issue_tab[1]).click()
+        common_action.waitTillObjectExist(RepoObjects.Issue6_link[0], RepoObjects.Issue6_link[1])
+        common_action.find_target_element(RepoObjects.Issue6_link[0], RepoObjects.Issue6_link[1]).click()
+        common_action.find_target_element(RepoObjects.CloseIssue_button[0], RepoObjects.CloseIssue_button[1]).click()
+        current_time = str(datetime.datetime.now())
+        year = current_time.split('-')[0]
+        month = current_time.split('-')[1]
+        day = current_time.split('-')[2].split(' ')[0]
+        hour = current_time.split(' ')[1].split(':')[0]
+        minutes = current_time.split(' ')[1].split(':')[1]
+        if month == '02':
+            month = 'Feb'
+        if '0' in hour:
+            if hour != '10':
+                hour = hour.split('0')[1]
+        title = month + ' ' + day + ', ' + year + ', ' + hour + ":" + minutes + ' AM GMT+8'
+        now = common_action.find_target_element('css', 'relative-time[title="' + title + '"]').text
+        self.assertEqual(now, self.data["timeNow"])
 if __name__ == "__main__":
     suit = unittest.TestSuite()
-    suit.addTest(Testrepo("test_enterComments"))
+    suit.addTest(Testrepo("test_closeAutoRefresh"))
     with(open('TestReport/' + time.strftime('%Y%m%d%H%M',time.localtime(time.time())) + '.html', 'wb')) as fp:
         runner = HTMLTestRunner(
             stream=fp,
