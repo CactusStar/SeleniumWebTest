@@ -26,3 +26,4 @@ class RepoObjects(BasePage):
     Issue6_link = ['id', 'issue_10_link']
     CloseIssue_button = ['name', 'comment_and_close']
     CloseTime_text = ['xpath', '//*[@id="event-6079327448"]/div[2]/a[3]/relative-time']
+    Settings_button = ['xpath', '//*[@id="repo-content-pjax-container"]/div/div[3]/div[2]/div/div[1]/div/details/summary']

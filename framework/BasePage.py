@@ -110,7 +110,7 @@ class BasePage(object):
             elif by == "xpath":
                 element = self.driver.find_element_by_xpath(value)
             elif by == "tag":
-                element = self.driver.find_element_by_tag_name(value)
+                element = self.driver.find_element_by_tag_name(value) # label, input, a, div...
             elif by == "css":
                 element = self.driver.find_element_by_css_selector(value)
             else:
